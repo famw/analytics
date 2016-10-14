@@ -17,11 +17,15 @@ get_fitness_by_population() {
   for pop in ${pop_files}; do
     declare pop_number=$(echo ${pop} | sed 's/[^0-9]*//g')
     declare all_fitness=$(
-      ${UTILS_PATH}/get-winners.sh ${pop_folder}/${pop} |
       ${UTILS_PATH}/get-organism-fitness.sh ${pop_folder}/${pop}
     )
-    declare results=$(echo "${all_fitness[*]}" | ${NUM} min avg max)
-    echo "${pop_number} ${results}"
+    declare winners_fitness=$(
+      ${UTILS_PATH}/get-winners.sh ${pop_folder}/${pop} | xargs \
+      ${UTILS_PATH}/get-organism-fitness.sh ${pop_folder}/${pop}
+    )
+    declare all_results=$(echo "${all_fitness[*]}" | ${NUM} min avg max)
+    declare winner_results=$(echo "${winners_fitness[*]}" | ${NUM} min avg max)
+    echo "${pop_number} ${all_results} ${winner_results}"
   done
 }
 
