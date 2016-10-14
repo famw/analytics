@@ -6,7 +6,9 @@ set -o pipefail
 set -o nounset
 
 declare -r SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+declare -r LIB_PATH="${SCRIPT_PATH}/lib"
 declare -r UTILS_PATH="${SCRIPT_PATH}/utils"
+declare -r NUM="${LIB_PATH}/num"
 
 get_fitness_by_population() {
   declare -r pop_folder=${1}
@@ -18,8 +20,8 @@ get_fitness_by_population() {
       ${UTILS_PATH}/get-winners.sh ${pop_folder}/${pop} |
       ${UTILS_PATH}/get-organism-fitness.sh ${pop_folder}/${pop}
     )
-    declare highest_fitness=$(echo "${all_fitness[*]}" | sort -nr | head -n1)
-    echo "${pop_number} ${highest_fitness}"
+    declare results=$(echo "${all_fitness[*]}" | ${NUM} min avg max)
+    echo "${pop_number} ${results}"
   done
 }
 
