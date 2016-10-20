@@ -9,7 +9,7 @@ set -o nounset
 # $2 - Number of the organism
 
 get_organism() {
-  sed -n '/\/* Organism #'${2}' /,/genomeend/p' $1 | tail -n+2
+  sed -n '/\/* Organism #'${2}' /,/genomeend/p' $1 | tail -n+2 | grep -v '/\*'
 }
 
 get_organism ${@}
