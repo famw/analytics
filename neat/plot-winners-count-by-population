@@ -1,0 +1,5 @@
+#!/usr/bin/env gnuplot
+
+set terminal wxt persist
+set xtics 1
+plot 'plot.data' using 1:2 with lines
