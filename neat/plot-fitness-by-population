@@ -1,4 +1,6 @@
 #!/usr/bin/env gnuplot
 
-set terminal wxt persist
-plot for [col=1:6] 'plot.data' using 0:col with lines
+set terminal x11 persist size 1200,600
+set key autotitle columnheader
+set key outside
+plot for [col=2:7] 'plot.data' using 0:col with lines
