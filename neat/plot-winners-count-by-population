@@ -3,4 +3,4 @@
 set terminal x11 persist size 1200,600
 set xtics 10
 set key outside
-plot 'plot.data' using 1:2 with lines
+plot 'plot.data' using 1:2 with lines lw 2
