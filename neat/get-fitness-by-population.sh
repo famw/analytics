@@ -14,6 +14,7 @@ get_fitness_by_population() {
   declare -r pop_folder=${1}
   declare -r pop_files=$( ${UTILS_PATH}/get-population-list.sh ${pop_folder} )
 
+  echo "Generation min(all) avg(all) max(all) min(win) avg(win) max(win)"
   for pop in ${pop_files}; do
     declare pop_number=$(echo ${pop} | sed 's/[^0-9]*//g')
     declare all_fitness=$(
