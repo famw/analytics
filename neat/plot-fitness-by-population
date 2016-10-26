@@ -1,13 +1,14 @@
 #!/usr/bin/env gnuplot
 
 colors = "#111111 #F012BE #FF4136 #FFDC00 #2ECC40 #0074D9"
-dashtypes = "20 2 4 7 12 13"
+dashtypes = "- .- --. _ -.. ."
 
 set title "Fitness"
 set xlabel "Generation"
 set ylabel "Fitness"
 
-set terminal x11 persist size 1200,600
+#set terminal pdfcairo enhanced
+set terminal x11 persist size 1200,600 # debugging
 set key autotitle columnheader
 set key outside
 
@@ -19,4 +20,4 @@ plot for [col=2:7] 'plot.data' \
     with lines \
     lw 2 \
     lc rgb word(colors, col - 1) \
-    dashtype int(word(dashtypes, col -1))
+    dashtype word(dashtypes, col -1)
