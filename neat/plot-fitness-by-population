@@ -1,21 +1,21 @@
 #!/usr/bin/env gnuplot
 
-colors = "#111111 #F012BE #FF4136 #FFDC00 #2ECC40 #0074D9"
+colors = "#0074D9 #2ECC40 #FF4136 #FFDC00 #111111 #F012BE"
 dashtypes = "- .- --. _ -.. ."
 
 set title "Fitness"
 set xlabel "Generation"
 set ylabel "Fitness"
 
-#set terminal pdfcairo enhanced
-set terminal x11 persist size 1200,600 # debugging
+set terminal pdfcairo enhanced
+#set terminal x11 persist size 1200,600 # debugging
 set key autotitle columnheader
 set key outside
 
 set style line 12 lc rgb '#808080' lt 0 lw 1
 set grid back ls 12
 
-plot for [col=2:7] 'plot.data' \
+plot for [col=2:4] 'plot.data' \
     using 0:col \
     with lines \
     lw 2 \
